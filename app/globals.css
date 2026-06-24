@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --k-bg: #f7f5f0;
+  --k-surface: #efece5;
+  --k-surface-hover: #e6e2d8;
+  --k-border: #d8d4ca;
+  --k-text: #2d2c2a;
+  --k-text-2: #5c5a56;
+  --k-accent: #7a8b76;
+  --k-accent-muted: #a3b19f;
+}
+
+.dark {
+  --k-bg: #141514;
+  --k-surface: #1c1e1c;
+  --k-surface-hover: #252725;
+  --k-border: #2d302d;
+  --k-text: #e6e8e6;
+  --k-text-2: #9aa09a;
+  --k-accent: #8f9f8b;
+  --k-accent-muted: #5c6a58;
+}
+
+* {
+  border-color: var(--k-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--k-bg);
+  color: var(--k-text);
+  font-family: var(--font-satoshi), -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+::selection {
+  background: var(--k-accent);
+  color: var(--k-bg);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--k-border);
+  border-radius: 999px;
+}
+
+@keyframes k-breathe {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.k-breathe {
+  animation: k-breathe 2.4s ease-in-out infinite;
+}
+
+@keyframes k-wipe {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.k-wipe {
+  animation: k-wipe 1.8s ease-in-out infinite;
+}
+
+@keyframes k-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.k-float {
+  animation: k-float 6s ease-in-out infinite;
+}
+
+.k-grain {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+}
