@@ -1,6 +1,9 @@
+import Image from "next/image";
+import { KODAMA_LOGO } from "@/lib/brand-data";
+
 export function KodamaMark({
   size = 48,
-  stroke = 2,
+  stroke: _stroke = 2,
   className = "",
   style,
 }: {
@@ -10,31 +13,15 @@ export function KodamaMark({
   style?: React.CSSProperties;
 }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
+    <Image
+      src={KODAMA_LOGO.src}
+      alt={KODAMA_LOGO.alt}
       width={size}
       height={size}
-      viewBox="0 0 64 64"
-      fill="none"
       className={className}
       style={style}
-      aria-label="Kodama mark"
-    >
-      <circle cx="32" cy="32" r="27" stroke="currentColor" strokeWidth={stroke} />
-      <path
-        d="M32 14 C44 24, 44 40, 32 50 C20 40, 20 24, 32 14 Z"
-        stroke="currentColor"
-        strokeWidth={stroke}
-        strokeLinejoin="round"
-        fill="none"
-      />
-      <path
-        d="M32 19 L32 45"
-        stroke="currentColor"
-        strokeWidth={0.75 * stroke}
-        strokeLinecap="round"
-      />
-    </svg>
+      priority={size >= 64}
+    />
   );
 }
 

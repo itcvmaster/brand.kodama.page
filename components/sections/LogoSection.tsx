@@ -31,7 +31,7 @@ export function LogoSection() {
                 Primary Mark
               </span>
               <span className="font-mono-k text-[11px]" style={{ color: "var(--k-accent)" }}>
-                SVG · scalable
+                PNG · 256px
               </span>
             </div>
           </div>

@@ -81,6 +81,13 @@ export const LINE_ILLUSTRATIONS = [
   { name: "Echo" },
 ] as const;
 
+export const KODAMA_LOGO = {
+  src: "https://cdn.kodama.page/images/kodama-icon-logo-256.png",
+  alt: "Kodama mark",
+  width: 256,
+  height: 256,
+} as const;
+
 export const PHOTOS = [
   { src: "/images/mist.webp", name: "Mist" },
   { src: "/images/stillness.webp", name: "Stillness" },
