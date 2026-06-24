@@ -82,9 +82,9 @@ export const LINE_ILLUSTRATIONS = [
 ] as const;
 
 export const PHOTOS = [
-  { src: "/images/mist.png", name: "Mist" },
-  { src: "/images/stillness.png", name: "Stillness" },
-  { src: "/images/moss.png", name: "Moss" },
+  { src: "/images/mist.webp", name: "Mist" },
+  { src: "/images/stillness.webp", name: "Stillness" },
+  { src: "/images/moss.webp", name: "Moss" },
 ] as const;
 
-export const HERO_IMAGE = "/images/mist.png";
+export const HERO_IMAGE = "/images/mist.webp";
