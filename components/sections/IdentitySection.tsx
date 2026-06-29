@@ -53,10 +53,10 @@ export function IdentitySection() {
               <div className="rounded-2xl border border-kodama-moss bg-kodama-moss p-10">
                 <span className="font-mono text-[11px] tracking-[0.32em] uppercase text-kodama-clay">On Moss</span>
                 <div className="mt-6 flex items-center gap-3">
-                  <KodamaLogo className="w-9 h-9 text-kodama-sand" />
-                  <span className="font-display text-4xl tracking-tight text-kodama-sand">Kodama</span>
+                  <KodamaLogo className="w-9 h-9" variant="dark" />
+                  <span className="font-display text-4xl tracking-tight text-[#F6F4F0]">Kodama</span>
                 </div>
-                <p className="mt-6 text-kodama-sand/70 font-light leading-relaxed">{onMossNote}</p>
+                <p className="mt-6 text-[#F6F4F0]/70 font-light leading-relaxed">{onMossNote}</p>
               </div>
             </FadeIn>
           </div>

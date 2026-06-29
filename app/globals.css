@@ -3,15 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --k-sand: #f6f4f0;
-  --k-moss: #4a5d4e;
-  --k-moss-deep: #3a4d3e;
-  --k-bark: #2c302e;
-  --k-clay: #c4a48c;
-  --k-mist: #efebe3;
-  --k-stone: #5c635f;
-  --k-line: #ddd8cf;
-  --k-sand-70: rgba(246, 244, 240, 0.7);
+  --k-sand: 246 244 240;
+  --k-moss: 74 93 78;
+  --k-moss-deep: 61 78 66;
+  --k-bark: 44 48 46;
+  --k-clay: 196 164 140;
+  --k-mist: 239 235 227;
+  --k-stone: 92 99 95;
+  --k-line: 221 216 207;
+  color-scheme: light;
+}
+
+.dark {
+  /* Aligned with kodama.page semantic dark tokens */
+  --k-sand: 26 29 27; /* background · #1a1d1b */
+  --k-moss: 90 112 96; /* primary · #5a7060 */
+  --k-moss-deep: 61 78 66; /* moss-deep · #3d4e42 */
+  --k-bark: 232 234 230; /* foreground · #e8eae6 */
+  --k-clay: 184 149 122; /* clay · #b8957a */
+  --k-mist: 42 45 43; /* muted · #2a2d2b */
+  --k-stone: 154 163 157; /* muted-foreground · #9aa39d */
+  --k-line: 53 57 53; /* border · #353935 */
+  color-scheme: dark;
 }
 
 html {
@@ -23,13 +36,14 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--k-sand);
-  color: var(--k-bark);
+  background-color: rgb(var(--k-sand));
+  color: rgb(var(--k-bark));
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
-  background: var(--k-moss);
-  color: var(--k-sand);
+  background: rgb(var(--k-moss));
+  color: rgb(var(--k-sand));
 }
 
 @keyframes breathe {
@@ -53,9 +67,16 @@ body {
   opacity: 0.04;
 }
 
+.dark .grain {
+  opacity: 0.035;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  body {
+    transition: none;
   }
   .animate-breathe,
   .animate-bounce {

@@ -17,7 +17,7 @@ export function Hero() {
           <div className="lg:col-span-7">
             <FadeIn>
               <div className="flex items-center gap-3">
-                <KodamaLogo className="w-9 h-9 text-kodama-moss animate-breathe" />
+                <KodamaLogo className="w-9 h-9 animate-breathe" priority />
                 <span className="font-mono text-[11px] tracking-[0.32em] uppercase text-kodama-clay">
                   {BRAND_VERSION}
                 </span>
@@ -43,7 +43,7 @@ export function Hero() {
                 <a
                   href="#philosophy"
                   data-testid="hero-cta-primary"
-                  className="inline-flex items-center gap-2 rounded-full bg-kodama-moss text-kodama-sand px-7 py-3.5 hover:bg-kodama-moss-deep transition-colors duration-300"
+                  className="inline-flex items-center gap-2 rounded-full bg-kodama-moss text-[#F6F4F0] px-7 py-3.5 hover:bg-kodama-moss-deep transition-colors duration-300"
                 >
                   {HERO_COPY.primaryCta}
                   <ArrowUpRight className="w-4 h-4" aria-hidden />

@@ -1,36 +1,72 @@
 "use client";
 
-import { useId } from "react";
+import Image from "next/image";
+import { KODAMA_LOGO, KODAMA_LOGO_DARK } from "@/lib/brand-data";
 
-/** Leaf-and-sprout mark from the Emergent brand system. */
+type KodamaLogoVariant = "auto" | "light" | "dark";
+
 export function KodamaLogo({
   className = "w-7 h-7",
   style,
+  priority = false,
+  variant = "auto",
 }: {
   className?: string;
   style?: React.CSSProperties;
+  priority?: boolean;
+  /** auto follows theme; dark for moss / dark surfaces */
+  variant?: KodamaLogoVariant;
 }) {
-  const uid = useId();
-  const maskId = `kodama-leaf-${uid.replace(/:/g, "")}`;
+  const imageClass = `aspect-square shrink-0 object-contain ${className}`;
+
+  if (variant === "dark") {
+    return (
+      <Image
+        src={KODAMA_LOGO_DARK.src}
+        alt={KODAMA_LOGO_DARK.alt}
+        width={KODAMA_LOGO_DARK.width}
+        height={KODAMA_LOGO_DARK.height}
+        priority={priority}
+        className={imageClass}
+        style={style}
+      />
+    );
+  }
+
+  if (variant === "light") {
+    return (
+      <Image
+        src={KODAMA_LOGO.src}
+        alt={KODAMA_LOGO.alt}
+        width={KODAMA_LOGO.width}
+        height={KODAMA_LOGO.height}
+        priority={priority}
+        className={imageClass}
+        style={style}
+      />
+    );
+  }
 
   return (
-    <svg
-      viewBox="0 0 64 64"
-      className={className}
-      style={style}
-      role="img"
-      aria-label="Kodama"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <mask id={maskId}>
-          <rect width="64" height="64" fill="white" />
-          <circle cx="47.5" cy="30" r="9" fill="black" />
-        </mask>
-      </defs>
-      <circle cx="30" cy="24" r="17" mask={`url(#${maskId})`} />
-      <rect x="27.4" y="38" width="5.2" height="20" rx="2.6" />
-    </svg>
+    <>
+      <Image
+        src={KODAMA_LOGO.src}
+        alt={KODAMA_LOGO.alt}
+        width={KODAMA_LOGO.width}
+        height={KODAMA_LOGO.height}
+        priority={priority}
+        className={`${imageClass} dark:hidden`}
+        style={style}
+      />
+      <Image
+        src={KODAMA_LOGO_DARK.src}
+        alt={KODAMA_LOGO_DARK.alt}
+        width={KODAMA_LOGO_DARK.width}
+        height={KODAMA_LOGO_DARK.height}
+        priority={priority}
+        className={`${imageClass} hidden dark:block`}
+        style={style}
+      />
+    </>
   );
 }

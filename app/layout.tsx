@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Spectral, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { THEME_COLOR } from "@/lib/brand-data";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { DARK_THEME_COLOR, KODAMA_LOGO, KODAMA_LOGO_DARK, THEME_COLOR } from "@/lib/brand-data";
 import { PHILOSOPHY_TAGLINE, PHILOSOPHY_WELCOME } from "@/lib/philosophy-data";
 
 const spectral = Spectral({
@@ -30,13 +31,25 @@ export const metadata: Metadata = {
   title: "Kodama · Brand System",
   description: `Kodama — ${PHILOSOPHY_WELCOME.headline} The brand system for a quieter internet. ${PHILOSOPHY_TAGLINE}`,
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: KODAMA_LOGO.src, media: "(prefers-color-scheme: light)" },
+      { url: KODAMA_LOGO_DARK.src, media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: [
+      { url: KODAMA_LOGO.src, media: "(prefers-color-scheme: light)" },
+      { url: KODAMA_LOGO_DARK.src, media: "(prefers-color-scheme: dark)" },
+    ],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: THEME_COLOR,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLOR },
+    { media: "(prefers-color-scheme: dark)", color: DARK_THEME_COLOR },
+  ],
 };
+
+const themeScript = `(function(){try{var t=localStorage.getItem("kodama-theme");var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);document.documentElement.style.colorScheme=d?"dark":"light";}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -44,11 +57,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         className={`${spectral.variable} ${outfit.variable} ${jetbrains.variable} font-body antialiased bg-kodama-sand text-kodama-bark`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

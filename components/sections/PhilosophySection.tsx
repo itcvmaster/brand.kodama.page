@@ -25,7 +25,7 @@ export function PhilosophySection() {
             <FadeIn>
               <p className="font-display font-light text-3xl sm:text-4xl leading-[1.25] tracking-tight text-kodama-bark mt-6">
                 Software should help you{" "}
-                <span className="italic text-kodama-moss">disappear</span>
+                <span className="italic text-kodama-moss">disappear</span>{" "}
                 into your work — not pull you into itself.
               </p>
             </FadeIn>

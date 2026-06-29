@@ -155,7 +155,7 @@ export function ForestFooter() {
   const [line1, line2, line3] = PHILOSOPHY_TAGLINE.split(". ").map((s) => s.replace(/\.$/, ""));
 
   return (
-    <footer data-testid="kodama-footer" className="relative bg-kodama-moss text-kodama-sand pt-28 pb-12 overflow-hidden">
+    <footer data-testid="kodama-footer" className="relative bg-kodama-moss text-[#F6F4F0] pt-28 pb-12 overflow-hidden">
       <div className="grain absolute inset-0 pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
         <FadeIn>
@@ -171,18 +171,18 @@ export function ForestFooter() {
           </h2>
         </FadeIn>
         <FadeIn delay={0.12}>
-          <p className="mt-10 max-w-lg text-kodama-sand/70 font-light text-lg">{PHILOSOPHY_CLOSING.invitation}</p>
-          <p className="mt-3 font-display text-xl italic text-kodama-sand/90">{PHILOSOPHY_CLOSING.mantra}</p>
-          <p className="mt-4 font-mono text-xs text-kodama-sand/50">
+          <p className="mt-10 max-w-lg text-[#F6F4F0]/70 font-light text-lg">{PHILOSOPHY_CLOSING.invitation}</p>
+          <p className="mt-3 font-display text-xl italic text-[#F6F4F0]/90">{PHILOSOPHY_CLOSING.mantra}</p>
+          <p className="mt-4 font-mono text-xs text-[#F6F4F0]/50">
             {PHILOSOPHY_WELCOME.headline} {PHILOSOPHY_WELCOME.subhead}
           </p>
         </FadeIn>
-        <div className="mt-16 pt-8 border-t border-kodama-sand/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="mt-16 pt-8 border-t border-[#F6F4F0]/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <KodamaLogo className="w-7 h-7 text-kodama-sand" />
+            <KodamaLogo className="w-7 h-7" variant="dark" />
             <span className="font-display text-xl">Kodama</span>
           </div>
-          <p className="font-mono text-xs text-kodama-sand/50 tracking-wider">{FOOTER_COPY.tagline}</p>
+          <p className="font-mono text-xs text-[#F6F4F0]/50 tracking-wider">{FOOTER_COPY.tagline}</p>
         </div>
       </div>
     </footer>

@@ -17,6 +17,21 @@ export const NAV_ITEMS = [
 export const BRAND_VERSION = "Brand System · v1.0" as const;
 
 export const THEME_COLOR = "#F6F4F0" as const;
+export const DARK_THEME_COLOR = "#1a1d1b" as const;
+
+export const KODAMA_LOGO = {
+  src: "https://cdn.kodama.page/images/kodama-icon-logo-256.png",
+  alt: "Kodama",
+  width: 256,
+  height: 256,
+} as const;
+
+export const KODAMA_LOGO_DARK = {
+  src: "https://cdn.kodama.page/images/kodama-icon-logo-256-dark.png",
+  alt: "Kodama",
+  width: 256,
+  height: 256,
+} as const;
 
 /** Emergent palette — solid, natural tones. */
 export const PALETTE = [
@@ -39,9 +54,9 @@ export const BRAND_SECTIONS = {
   },
   identity: {
     kicker: "Logo & Wordmark",
-    title: "A small spirit. A growing sprout.",
+    title: "The kodama icon.",
     intro:
-      "The Kodama mark fuses a forest tree-spirit with a young sprout — round, gentle, alive. It signals growth without noise.",
+      "The official Kodama mark — a quiet forest spirit in a 1:1 square. Use the CDN asset at full color; never recolor or distort.",
     clearSpace: "Clear space = height of the mark ÷ 2",
     wordmarkNote: "Set in Spectral Light. The mark always leads the word, with a breath of space between them.",
     onMossNote: "Reversed lockup for dark, grounded surfaces. Sand on Moss.",
@@ -81,12 +96,12 @@ export const BRAND_SECTIONS = {
 export const LOGO_GUIDELINES = {
   do: [
     "Give the mark generous, quiet space.",
-    "Use Moss, Bark, or Sand monochrome only.",
-    "Keep the sprout upright and balanced.",
+      "Use the official full-color icon — light or dark asset as appropriate.",
+    "Keep the 1:1 square proportions intact.",
   ],
   dont: [
     "Stretch, rotate, or add shadows & gradients.",
-    "Recolor with off-brand or neon hues.",
+    "Recolor, tint, or filter the illustration.",
     "Crowd the mark or place it on busy imagery.",
   ],
 } as const;

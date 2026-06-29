@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,14 +10,14 @@ const config: Config = {
     extend: {
       colors: {
         kodama: {
-          sand: "#F6F4F0",
-          moss: "#4A5D4E",
-          "moss-deep": "#3A4D3E",
-          bark: "#2C302E",
-          clay: "#C4A48C",
-          mist: "#EFEBE3",
-          stone: "#5C635F",
-          line: "#DDD8CF",
+          sand: "rgb(var(--k-sand) / <alpha-value>)",
+          moss: "rgb(var(--k-moss) / <alpha-value>)",
+          "moss-deep": "rgb(var(--k-moss-deep) / <alpha-value>)",
+          bark: "rgb(var(--k-bark) / <alpha-value>)",
+          clay: "rgb(var(--k-clay) / <alpha-value>)",
+          mist: "rgb(var(--k-mist) / <alpha-value>)",
+          stone: "rgb(var(--k-stone) / <alpha-value>)",
+          line: "rgb(var(--k-line) / <alpha-value>)",
         },
       },
       fontFamily: {

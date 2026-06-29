@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/brand-data";
 import { PHILOSOPHY_WELCOME } from "@/lib/philosophy-data";
 import { KodamaLogo } from "./KodamaLogo";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -61,14 +62,17 @@ export function Header() {
           ))}
         </div>
 
-        <a
-          href="#forest"
-          data-testid="nav-cta"
-          className="hidden sm:inline-flex items-center gap-2 rounded-full bg-kodama-moss text-kodama-sand text-sm px-5 py-2.5 hover:bg-kodama-moss-deep transition-colors duration-300"
-        >
-          {PHILOSOPHY_WELCOME.headline}
-          <ArrowUpRight className="w-4 h-4" aria-hidden />
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#forest"
+            data-testid="nav-cta"
+            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-kodama-moss text-[#F6F4F0] text-sm px-5 py-2.5 hover:bg-kodama-moss-deep transition-colors duration-300"
+          >
+            {PHILOSOPHY_WELCOME.headline}
+            <ArrowUpRight className="w-4 h-4" aria-hidden />
+          </a>
+        </div>
       </nav>
     </header>
   );
