@@ -1,19 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/brand-data";
-import { KodamaMark } from "./KodamaMark";
-import { useTheme } from "./ThemeProvider";
+import { PHILOSOPHY_WELCOME } from "@/lib/philosophy-data";
+import { KodamaLogo } from "./KodamaLogo";
 
 export function Header() {
-  const { theme, toggle } = useTheme();
-  const [activeSection, setActiveSection] = useState("overview");
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [active, setActive] = useState("top");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -22,111 +20,56 @@ export function Header() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { rootMargin: "-45% 0px -50% 0px" }
+      { rootMargin: "-40% 0px -55% 0px" }
     );
-
     NAV_ITEMS.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <header
-      className="fixed top-0 inset-x-0 z-50 transition-all duration-500"
-      style={{
-        backgroundColor: scrolled
-          ? "color-mix(in srgb, var(--k-bg) 78%, transparent)"
-          : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--k-border)" : "1px solid transparent",
-      }}
+      data-testid="kodama-nav"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 border-b ${
+        scrolled ? "bg-kodama-sand/82 backdrop-blur-xl border-kodama-line" : "bg-transparent border-transparent"
+      }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 md:px-12 lg:px-8 h-20 flex items-center justify-between">
-        <a href="#overview" data-testid="nav-logo" className="flex items-center gap-3 group">
-          <KodamaMark
-            size={26}
-            stroke={2.2}
-            style={{ color: "var(--k-text)" }}
-            className="transition-transform duration-700 group-hover:rotate-180"
-          />
-          <span className="font-display text-xl tracking-tight" style={{ color: "var(--k-text)" }}>
-            Kodama
-          </span>
+      <nav className="max-w-7xl mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
+        <a href="#top" data-testid="nav-logo" className="flex items-center gap-2.5 group">
+          <KodamaLogo className="w-7 h-7 text-kodama-moss transition-transform duration-500 group-hover:-translate-y-0.5" />
+          <span className="font-display text-xl tracking-tight text-kodama-bark">Kodama</span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-7">
-          {NAV_ITEMS.map(({ id, label }) => (
+        <div className="hidden md:flex items-center gap-8">
+          {NAV_ITEMS.filter(({ id }) => id !== "top").map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
               data-testid={`nav-link-${id}`}
-              className="font-mono-k text-[11px] uppercase tracking-[0.18em] transition-colors duration-300"
-              style={{ color: activeSection === id ? "var(--k-accent)" : "var(--k-text-2)" }}
+              className={`text-sm transition-colors duration-300 ${
+                active === id ? "text-kodama-bark" : "text-kodama-stone hover:text-kodama-bark"
+              }`}
             >
               {label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            data-testid="theme-toggle"
-            onClick={toggle}
-            aria-label="Toggle theme"
-            className="grid place-items-center w-10 h-10 rounded-full border transition-all duration-500 hover:scale-105"
-            style={{ borderColor: "var(--k-border)", color: "var(--k-text)" }}
-          >
-            {theme === "dark" ? (
-              <Sun size={16} strokeWidth={1.5} />
-            ) : (
-              <Moon size={16} strokeWidth={1.5} />
-            )}
-          </button>
-          <button
-            data-testid="mobile-menu-toggle"
-            onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Menu"
-            className="lg:hidden grid place-items-center w-10 h-10 rounded-full border transition-all duration-500"
-            style={{ borderColor: "var(--k-border)", color: "var(--k-text)" }}
-          >
-            {mobileOpen ? <X size={16} strokeWidth={1.5} /> : <Menu size={16} strokeWidth={1.5} />}
-          </button>
-        </div>
-      </nav>
-
-      {mobileOpen && (
-        <div
-          data-testid="mobile-menu"
-          className="lg:hidden border-t"
-          style={{
-            borderColor: "var(--k-border)",
-            background: "color-mix(in srgb, var(--k-bg) 94%, transparent)",
-            backdropFilter: "blur(16px)",
-          }}
+        <a
+          href="#forest"
+          data-testid="nav-cta"
+          className="hidden sm:inline-flex items-center gap-2 rounded-full bg-kodama-moss text-kodama-sand text-sm px-5 py-2.5 hover:bg-kodama-moss-deep transition-colors duration-300"
         >
-          <div className="px-6 py-6 grid grid-cols-2 gap-y-4">
-            {NAV_ITEMS.map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                data-testid={`mobile-link-${id}`}
-                onClick={() => setMobileOpen(false)}
-                className="font-mono-k text-xs uppercase tracking-[0.18em]"
-                style={{ color: activeSection === id ? "var(--k-accent)" : "var(--k-text-2)" }}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+          {PHILOSOPHY_WELCOME.headline}
+          <ArrowUpRight className="w-4 h-4" aria-hidden />
+        </a>
+      </nav>
     </header>
   );
 }

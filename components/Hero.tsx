@@ -1,112 +1,83 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
-import { ATTRIBUTES, HERO_IMAGE } from "@/lib/brand-data";
-import { useHydrated } from "@/lib/use-hydrated";
-import { KodamaMark } from "./KodamaMark";
-import Image from "next/image";
-
-const markHidden = { opacity: 0, scale: 0.9 };
-const markVisible = { opacity: 1, scale: 1 };
+import { ArrowUpRight } from "lucide-react";
+import { BRAND_VERSION } from "@/lib/brand-data";
+import { HERO_COPY, PHILOSOPHY_TAGLINE } from "@/lib/philosophy-data";
+import { KodamaLogo } from "./KodamaLogo";
+import { FadeIn } from "./FadeIn";
+import { HeroBackdrop, PageSnapshot } from "./snapshots/BrandSnapshots";
 
 export function Hero() {
-  const hydrated = useHydrated();
-
   return (
-    <section id="overview" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      <div className="absolute inset-0">
-        <Image
-          src={HERO_IMAGE}
-          alt=""
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div
-          className="absolute inset-0 transition-colors duration-700"
-          style={{
-            background:
-              "linear-gradient(180deg, color-mix(in srgb, var(--k-bg) 55%, transparent) 0%, color-mix(in srgb, var(--k-bg) 82%, transparent) 55%, var(--k-bg) 100%)",
-          }}
-        />
-        <div className="absolute inset-0 k-grain opacity-[0.04] pointer-events-none" />
+    <section id="top" data-testid="hero-section" className="relative overflow-hidden pt-44 pb-28 lg:pt-52 lg:pb-36">
+      <HeroBackdrop />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <FadeIn>
+              <div className="flex items-center gap-3">
+                <KodamaLogo className="w-9 h-9 text-kodama-moss animate-breathe" />
+                <span className="font-mono text-[11px] tracking-[0.32em] uppercase text-kodama-clay">
+                  {BRAND_VERSION}
+                </span>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.08}>
+              <h1 className="font-display font-light tracking-tight text-kodama-bark mt-8 text-6xl sm:text-7xl lg:text-[7.5rem] leading-[0.92]">
+                {HERO_COPY.headline[0]}
+                <br />
+                <span className="italic text-kodama-moss">{HERO_COPY.headline[1]}</span>
+              </h1>
+            </FadeIn>
+
+            <FadeIn delay={0.14}>
+              <p className="mt-10 max-w-xl text-xl leading-relaxed text-kodama-stone font-light">
+                {HERO_COPY.body}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <div className="mt-12 flex flex-wrap items-center gap-4">
+                <a
+                  href="#philosophy"
+                  data-testid="hero-cta-primary"
+                  className="inline-flex items-center gap-2 rounded-full bg-kodama-moss text-kodama-sand px-7 py-3.5 hover:bg-kodama-moss-deep transition-colors duration-300"
+                >
+                  {HERO_COPY.primaryCta}
+                  <ArrowUpRight className="w-4 h-4" aria-hidden />
+                </a>
+                <a
+                  href="#identity"
+                  data-testid="hero-cta-secondary"
+                  className="inline-flex items-center gap-2 rounded-full border border-kodama-line text-kodama-bark px-7 py-3.5 hover:bg-kodama-mist transition-colors duration-300"
+                >
+                  {HERO_COPY.secondaryCta}
+                </a>
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.12} className="lg:col-span-5 hidden lg:block">
+            <PageSnapshot />
+          </FadeIn>
+        </div>
+
+        <FadeIn delay={0.26}>
+          <div className="mt-24 flex flex-wrap items-center gap-x-10 gap-y-3 border-t border-kodama-line pt-8 font-display text-lg text-kodama-stone">
+            {PHILOSOPHY_TAGLINE.split(". ").map((part, i, arr) => (
+              <span key={part} className="contents">
+                <span className="text-kodama-bark">
+                  {part}
+                  {i < arr.length - 1 ? "." : ""}
+                </span>
+                {i < arr.length - 1 && <span className="text-kodama-line">·</span>}
+              </span>
+            ))}
+          </div>
+        </FadeIn>
       </div>
-
-      <div className="relative max-w-6xl mx-auto w-full px-6 md:px-12 lg:px-24 pt-28">
-        <motion.div
-          initial={markHidden}
-          animate={hydrated ? markVisible : markHidden}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          className="k-float"
-        >
-          <KodamaMark size={64} stroke={1.8} style={{ color: "var(--k-accent)" }} />
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={hydrated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="mt-10 font-mono-k text-xs uppercase tracking-[0.4em]"
-          style={{ color: "var(--k-accent)" }}
-        >
-          Kodama — Brand System
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={hydrated ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ duration: 1.2, delay: 0.45 }}
-          className="mt-6 font-display font-light tracking-tighter leading-[0.95] text-5xl md:text-7xl lg:text-8xl max-w-4xl"
-          style={{ color: "var(--k-text)" }}
-        >
-          A quiet place
-          <br />
-          for your thoughts.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={hydrated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="mt-8 max-w-lg text-base md:text-lg font-light leading-relaxed"
-          style={{ color: "var(--k-text-2)" }}
-        >
-          Kodama are the unseen spirits of the forest. We translate that stillness into a digital
-          language — present, private, and calm.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={hydrated ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-14 flex flex-wrap gap-x-8 gap-y-3"
-        >
-          {ATTRIBUTES.map(({ word }) => (
-            <span
-              key={word}
-              className="font-mono-k text-[11px] uppercase tracking-[0.22em]"
-              style={{ color: "var(--k-text-2)" }}
-            >
-              {word}
-            </span>
-          ))}
-        </motion.div>
-      </div>
-
-      <motion.a
-        href="#logo"
-        data-testid="hero-scroll"
-        initial={{ opacity: 0 }}
-        animate={hydrated ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1, delay: 1.3 }}
-        className="relative max-w-6xl mx-auto w-full px-6 md:px-12 lg:px-24 mt-20 flex items-center gap-3 pb-12"
-        style={{ color: "var(--k-text-2)" }}
-      >
-        <ArrowDown size={15} strokeWidth={1.5} className="animate-bounce" />
-        <span className="font-mono-k text-[11px] uppercase tracking-[0.25em]">Enter the grove</span>
-      </motion.a>
     </section>
   );
 }

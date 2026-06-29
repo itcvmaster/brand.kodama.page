@@ -1,13 +1,21 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Spectral, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { THEME_COLOR } from "@/lib/brand-data";
+import { PHILOSOPHY_TAGLINE, PHILOSOPHY_WELCOME } from "@/lib/philosophy-data";
 
-const cormorant = Cormorant_Garamond({
+const spectral = Spectral({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  variable: "--font-spectral",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -19,11 +27,15 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kodama — Brand System",
-  description: "A quiet place for your thoughts.",
+  title: "Kodama · Brand System",
+  description: `Kodama — ${PHILOSOPHY_WELCOME.headline} The brand system for a quieter internet. ${PHILOSOPHY_TAGLINE}`,
   icons: {
     icon: "/favicon.ico",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: THEME_COLOR,
 };
 
 export default function RootLayout({
@@ -32,12 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
-        className={`${cormorant.variable} ${jetbrains.variable} font-body antialiased`}
-        style={{ ["--font-satoshi" as string]: "'Satoshi', sans-serif" }}
+        className={`${spectral.variable} ${outfit.variable} ${jetbrains.variable} font-body antialiased bg-kodama-sand text-kodama-bark`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );

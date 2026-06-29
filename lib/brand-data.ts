@@ -1,97 +1,99 @@
+/**
+ * Kodama visual brand system — colors, typography, layout, and section framing.
+ * All readable copy lives in `@/lib/philosophy-data`.
+ */
+
 export const NAV_ITEMS = [
-  { id: "overview", label: "Overview" },
-  { id: "logo", label: "Logo" },
-  { id: "subbrands", label: "Family" },
-  { id: "icons", label: "Icons" },
+  { id: "top", label: "Overview" },
+  { id: "philosophy", label: "Philosophy" },
+  { id: "the-way", label: "The Way" },
+  { id: "identity", label: "Identity" },
+  { id: "palette", label: "Palette" },
   { id: "type", label: "Type" },
-  { id: "color", label: "Color" },
-  { id: "spacing", label: "Spacing" },
-  { id: "illustration", label: "Illustration" },
-  { id: "states", label: "States" },
+  { id: "voice", label: "Voice" },
+  { id: "forest", label: "The Forest" },
 ] as const;
 
-export const ATTRIBUTES = [
-  { word: "Quiet", note: "Speaks softly. Never demands attention." },
-  { word: "Hidden", note: "Present, but unobtrusive — like a spirit in the trees." },
-  { word: "Peaceful", note: "A calm surface. Stillness as a feature." },
-  { word: "Trustworthy", note: "Steady, honest, and private by default." },
-  { word: "Intelligent", note: "Considered. Every detail has intent." },
-  { word: "Minimal", note: "Only what is needed. Nothing more." },
+export const BRAND_VERSION = "Brand System · v1.0" as const;
+
+export const THEME_COLOR = "#F6F4F0" as const;
+
+/** Emergent palette — solid, natural tones. */
+export const PALETTE = [
+  { name: "Moss", hex: "#4A5D4E", role: "Primary brand · spirit of the forest" },
+  { name: "Bark", hex: "#2C302E", role: "Text · grounding & contrast" },
+  { name: "Clay", hex: "#C4A48C", role: "Accent · warmth & soil" },
+  { name: "Sand", hex: "#F6F4F0", role: "Background · open clearing" },
+  { name: "Mist", hex: "#EFEBE3", role: "Surface · quiet depth" },
+  { name: "Stone", hex: "#5C635F", role: "Secondary text · soft voice" },
 ] as const;
 
-export const COLORS = {
-  light: [
-    { name: "Mist", hex: "#F7F5F0", role: "Background" },
-    { name: "Paper", hex: "#EFECE5", role: "Surface" },
-    { name: "Stone", hex: "#D8D4CA", role: "Border" },
-    { name: "Sumi", hex: "#2D2C2A", role: "Text — primary" },
-    { name: "Ash", hex: "#5C5A56", role: "Text — secondary" },
-    { name: "Moss", hex: "#7A8B76", role: "Accent" },
-    { name: "Sage", hex: "#A3B19F", role: "Accent — muted" },
+export const BRAND_SECTIONS = {
+  philosophy: {
+    kicker: "We Believe",
+  },
+  theWay: {
+    kicker: "The Kodama Way",
+    title: "Three principles. One forest.",
+    intro: "Three rules — the soil everything grows from.",
+  },
+  identity: {
+    kicker: "Logo & Wordmark",
+    title: "A small spirit. A growing sprout.",
+    intro:
+      "The Kodama mark fuses a forest tree-spirit with a young sprout — round, gentle, alive. It signals growth without noise.",
+    clearSpace: "Clear space = height of the mark ÷ 2",
+    wordmarkNote: "Set in Spectral Light. The mark always leads the word, with a breath of space between them.",
+    onMossNote: "Reversed lockup for dark, grounded surfaces. Sand on Moss.",
+  },
+  palette: {
+    kicker: "Color",
+    title: "The palette of a quiet forest.",
+    intro:
+      "Earth, moss, clay and morning light. Solid, natural tones — never tech gradients. Color is used sparingly, the way light falls through trees.",
+  },
+  type: {
+    kicker: "Typography",
+    title: "Spectral speaks. Outfit listens.",
+    intro:
+      "A bookish serif for voice and headlines; a clean, humanist sans for calm reading. Together they feel considered, never loud.",
+    bodyNote:
+      "Body copy stays light in weight and generous in line-height. Every meaningful idea deserves a meaningful place — and room to breathe.",
+  },
+  voice: {
+    kicker: "Voice & Tone",
+    title: "Calm. Human. Unhurried.",
+    intro:
+      "Kodama writes like a person who respects your time. Direct, but gentle. Confident, but quiet.",
+  },
+  forest: {
+    kicker: "The Forest",
+    title: "Different products. One philosophy.",
+    intro: "Every product is another tree — one problem, one URL, one place.",
+    growing: "Tomorrow —",
+    inTheWild: "Brand In The Wild",
+  },
+  footer: {
+    kicker: "The Kodama Mantra",
+  },
+} as const;
+
+export const LOGO_GUIDELINES = {
+  do: [
+    "Give the mark generous, quiet space.",
+    "Use Moss, Bark, or Sand monochrome only.",
+    "Keep the sprout upright and balanced.",
   ],
-  dark: [
-    { name: "Charcoal", hex: "#141514", role: "Background" },
-    { name: "Bark", hex: "#1C1E1C", role: "Surface" },
-    { name: "Shadow", hex: "#2D302D", role: "Border" },
-    { name: "Snow", hex: "#E6E8E6", role: "Text — primary" },
-    { name: "Fog", hex: "#9AA09A", role: "Text — secondary" },
-    { name: "Moss", hex: "#8F9F8B", role: "Accent" },
-    { name: "Deep Moss", hex: "#5C6A58", role: "Accent — muted" },
+  dont: [
+    "Stretch, rotate, or add shadows & gradients.",
+    "Recolor with off-brand or neon hues.",
+    "Crowd the mark or place it on busy imagery.",
   ],
 } as const;
 
-export const TYPE_SCALE = [
-  { label: "Display", cls: "text-5xl md:text-7xl font-light tracking-tighter", family: "Cormorant Garamond", spec: "72 / Light" },
-  { label: "Heading", cls: "text-3xl md:text-4xl font-light tracking-tight", family: "Cormorant Garamond", spec: "40 / Light" },
-  { label: "Subhead", cls: "text-xl md:text-2xl font-body font-normal", family: "Satoshi", spec: "24 / Regular" },
-  { label: "Body", cls: "text-base md:text-lg font-body font-light", family: "Satoshi", spec: "18 / Light" },
-  { label: "Caption", cls: "text-xs uppercase tracking-[0.3em] font-mono-k", family: "JetBrains Mono", spec: "12 / Mono" },
+export const TYPE_SPECIMENS = [
+  { label: "H1 · Display", size: "text-5xl", family: "display" as const },
+  { label: "H2 · Section", size: "text-3xl", family: "display" as const },
+  { label: "H3 · Title", size: "text-xl", family: "body" as const, weight: "font-medium" },
+  { label: "Body · Reading", size: "text-base", family: "body" as const, weight: "font-light" },
 ] as const;
-
-export const SPACING_SCALE = [
-  { token: "xs", px: 4 },
-  { token: "sm", px: 8 },
-  { token: "md", px: 16 },
-  { token: "lg", px: 24 },
-  { token: "xl", px: 32 },
-  { token: "2xl", px: 48 },
-  { token: "3xl", px: 64 },
-  { token: "4xl", px: 96 },
-  { token: "5xl", px: 128 },
-] as const;
-
-export const SUBBRANDS = [
-  { name: "Note", line: "Write quietly", desc: "A calm canvas for thinking. Paper lines folded into the seed." },
-  { name: "Secret", line: "Share, hidden", desc: "An eclipsed circle — present, but never fully revealed." },
-  { name: "Drop", line: "Send softly", desc: "A single droplet. A transfer that leaves only a ripple." },
-  { name: "Poll", line: "Ask gently", desc: "Three staggered marks — many voices, kept in balance." },
-] as const;
-
-export const ICON_NAMES = [
-  "feather", "leaf", "sprout", "wind", "moon", "cloud",
-  "droplet", "eye", "eye-off", "search", "bell", "bookmark",
-  "share", "archive", "folder", "chart",
-] as const;
-
-export const LINE_ILLUSTRATIONS = [
-  { name: "Seed" },
-  { name: "Branch" },
-  { name: "Stone" },
-  { name: "Distance" },
-  { name: "Echo" },
-] as const;
-
-export const KODAMA_LOGO = {
-  src: "https://cdn.kodama.page/images/kodama-icon-logo-256.png",
-  alt: "Kodama mark",
-  width: 256,
-  height: 256,
-} as const;
-
-export const PHOTOS = [
-  { src: "/images/mist.webp", name: "Mist" },
-  { src: "/images/stillness.webp", name: "Stillness" },
-  { src: "/images/moss.webp", name: "Moss" },
-] as const;
-
-export const HERO_IMAGE = "/images/mist.webp";
