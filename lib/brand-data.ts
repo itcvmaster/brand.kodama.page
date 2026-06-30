@@ -19,19 +19,15 @@ export const BRAND_VERSION = "Brand System · v1.0" as const;
 export const THEME_COLOR = "#F6F4F0" as const;
 export const DARK_THEME_COLOR = "#1a1d1b" as const;
 
-export const KODAMA_LOGO = {
-  src: "https://cdn.kodama.page/images/kodama-icon-logo-256.png",
+/** Static mark asset — same paths as kodama.page */
+export const KODAMA_MARK = {
+  src: "/kodama-mark.svg",
   alt: "Kodama",
-  width: 256,
-  height: 256,
 } as const;
 
-export const KODAMA_LOGO_DARK = {
-  src: "https://cdn.kodama.page/images/kodama-icon-logo-256-dark.png",
-  alt: "Kodama",
-  width: 256,
-  height: 256,
-} as const;
+export const KODAMA_FAVICON = "/favicon.ico" as const;
+export const KODAMA_FAVICON_32 = "/favicon-32.png" as const;
+export const KODAMA_APPLE_TOUCH = "/apple-touch-icon.png" as const;
 
 /** Emergent palette — solid, natural tones. */
 export const PALETTE = [
@@ -56,7 +52,7 @@ export const BRAND_SECTIONS = {
     kicker: "Logo & Wordmark",
     title: "The kodama icon.",
     intro:
-      "The official Kodama mark — a quiet forest spirit in a 1:1 square. Use the CDN asset at full color; never recolor or distort.",
+      "The official Kodama mark — a quiet forest spirit in a 1:1 square. Use currentColor in UI; the static SVG uses Moss (#4A5D4E) on Sand. Never recolor or distort.",
     clearSpace: "Clear space = height of the mark ÷ 2",
     wordmarkNote: "Set in Spectral Light. The mark always leads the word, with a breath of space between them.",
     onMossNote: "Reversed lockup for dark, grounded surfaces. Sand on Moss.",
@@ -96,7 +92,7 @@ export const BRAND_SECTIONS = {
 export const LOGO_GUIDELINES = {
   do: [
     "Give the mark generous, quiet space.",
-      "Use the official full-color icon — light or dark asset as appropriate.",
+      "Use the SVG mark with currentColor, or the static asset on neutral surfaces.",
     "Keep the 1:1 square proportions intact.",
   ],
   dont: [

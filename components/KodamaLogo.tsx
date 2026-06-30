@@ -1,72 +1,49 @@
 "use client";
 
-import Image from "next/image";
-import { KODAMA_LOGO, KODAMA_LOGO_DARK } from "@/lib/brand-data";
+const MARK_PATHS = (
+  <>
+    <path d="M32 27 C 20.5 27.5, 12.5 19.5, 12 9 C 24 9, 32 16.5, 32 27 Z" />
+    <path d="M32 27 C 43.5 27.5, 51.5 19.5, 52 9 C 40 9, 32 16.5, 32 27 Z" />
+    <path d="M32 23 C 38.5 29.5, 40.5 40, 36.5 51.5 C 34.8 56.5, 29.2 56.5, 27.5 51.5 C 23.5 40, 25.5 29.5, 32 23 Z" />
+  </>
+);
 
 type KodamaLogoVariant = "auto" | "light" | "dark";
 
 export function KodamaLogo({
   className = "w-7 h-7",
   style,
-  priority = false,
+  priority: _priority,
   variant = "auto",
 }: {
   className?: string;
   style?: React.CSSProperties;
   priority?: boolean;
-  /** auto follows theme; dark for moss / dark surfaces */
+  /** auto follows theme; dark is sand on moss surfaces */
   variant?: KodamaLogoVariant;
 }) {
-  const imageClass = `aspect-square shrink-0 object-contain ${className}`;
+  const colorClass =
+    variant === "dark"
+      ? "text-[#F6F4F0]"
+      : variant === "light"
+        ? "text-kodama-moss"
+        : "text-kodama-moss";
 
-  if (variant === "dark") {
-    return (
-      <Image
-        src={KODAMA_LOGO_DARK.src}
-        alt={KODAMA_LOGO_DARK.alt}
-        width={KODAMA_LOGO_DARK.width}
-        height={KODAMA_LOGO_DARK.height}
-        priority={priority}
-        className={imageClass}
-        style={style}
-      />
-    );
-  }
-
-  if (variant === "light") {
-    return (
-      <Image
-        src={KODAMA_LOGO.src}
-        alt={KODAMA_LOGO.alt}
-        width={KODAMA_LOGO.width}
-        height={KODAMA_LOGO.height}
-        priority={priority}
-        className={imageClass}
-        style={style}
-      />
-    );
-  }
+  const eyeClass =
+    variant === "dark" ? "fill-kodama-moss" : "fill-kodama-sand";
 
   return (
-    <>
-      <Image
-        src={KODAMA_LOGO.src}
-        alt={KODAMA_LOGO.alt}
-        width={KODAMA_LOGO.width}
-        height={KODAMA_LOGO.height}
-        priority={priority}
-        className={`${imageClass} dark:hidden`}
-        style={style}
-      />
-      <Image
-        src={KODAMA_LOGO_DARK.src}
-        alt={KODAMA_LOGO_DARK.alt}
-        width={KODAMA_LOGO_DARK.width}
-        height={KODAMA_LOGO_DARK.height}
-        priority={priority}
-        className={`${imageClass} hidden dark:block`}
-        style={style}
-      />
-    </>
+    <svg
+      viewBox="0 0 64 64"
+      fill="currentColor"
+      role="img"
+      aria-label="Kodama"
+      className={`aspect-square shrink-0 ${colorClass} ${className}`}
+      style={style}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {MARK_PATHS}
+      <circle cx="32" cy="43" r="3.1" className={eyeClass} />
+    </svg>
   );
 }

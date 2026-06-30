@@ -2,7 +2,14 @@ import type { Metadata, Viewport } from "next";
 import { Spectral, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { DARK_THEME_COLOR, KODAMA_LOGO, KODAMA_LOGO_DARK, THEME_COLOR } from "@/lib/brand-data";
+import {
+  DARK_THEME_COLOR,
+  KODAMA_APPLE_TOUCH,
+  KODAMA_FAVICON,
+  KODAMA_FAVICON_32,
+  KODAMA_MARK,
+  THEME_COLOR,
+} from "@/lib/brand-data";
 import { PHILOSOPHY_TAGLINE, PHILOSOPHY_WELCOME } from "@/lib/philosophy-data";
 
 const spectral = Spectral({
@@ -32,13 +39,11 @@ export const metadata: Metadata = {
   description: `Kodama — ${PHILOSOPHY_WELCOME.headline} The brand system for a quieter internet. ${PHILOSOPHY_TAGLINE}`,
   icons: {
     icon: [
-      { url: KODAMA_LOGO.src, media: "(prefers-color-scheme: light)" },
-      { url: KODAMA_LOGO_DARK.src, media: "(prefers-color-scheme: dark)" },
+      { url: KODAMA_MARK.src, type: "image/svg+xml" },
+      { url: KODAMA_FAVICON_32, sizes: "32x32", type: "image/png" },
+      { url: KODAMA_FAVICON, sizes: "any" },
     ],
-    apple: [
-      { url: KODAMA_LOGO.src, media: "(prefers-color-scheme: light)" },
-      { url: KODAMA_LOGO_DARK.src, media: "(prefers-color-scheme: dark)" },
-    ],
+    apple: KODAMA_APPLE_TOUCH,
   },
 };
 
